@@ -1,0 +1,41 @@
+{% set name = "test_package" %}
+{% set version = "0.1.0" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  path: ..
+
+build:
+  number: 0
+  skip: True  # [win]
+  script: python setup.py install --single-version-externally-managed --record record.txt
+
+requirements:
+  host:
+    - python
+    - setuptools
+    - pip
+
+  run:
+    - python
+
+test:
+  imports:
+    - test_package
+
+about:
+  home: https://github.com/beckermr/conda-package-tools
+  license: BSD
+  license_file: '{{ environ["RECIPE_DIR"] }}/LICENSE'
+  summary: A test package for testing.
+  description: |
+    A test package for testing.
+  doc_url: https://github.com/beckermr/conda-package-tools
+  dev_url: https://github.com/beckermr/conda-package-tools
+
+extra:
+  recipe-maintainers:
+    - beckermr
