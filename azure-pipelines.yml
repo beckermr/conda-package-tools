@@ -1,10 +1,17 @@
+resources:
+  repositories:
+    - repository: templates
+      type: github
+      name: conda-package-tools
+      ref: refs/heads/master
+
 variables:
-  buildtag: master  # always test master here - change to a vXYZ branch when using
+  buildtag: master
 
 jobs:
-  - template: conda-package-tools/linux_python3.7_azure_template.yml
+  - template: linux_python3.7_azure_template.yml@templates
     parameters:
       buildtag: ${buildtag}
-  - template: conda-package-tools/osx_python3.7_azure_template.yml
+  - template: osx_python3.7_azure_template.yml@templates
     parameters:
       buildtag: ${buildtag}
