@@ -26,10 +26,10 @@ Note that some of the CI configuration elements are lifted from conda-forge unde
     jobs:
       - template: linux_python3.7_azure_template.yml@templates
         parameters:
-          buildtag: ${buildtag}
+          buildtag: $(buildtag)
       - template: osx_python3.7_azure_template.yml@templates
         parameters:
-          buildtag: ${buildtag}
+          buildtag: $(buildtag)
    ```
 
    where `XYZ` is has been replaced with the version number (2 or greater).
