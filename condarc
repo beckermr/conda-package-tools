@@ -2,3 +2,4 @@ channels:
   - beckermr
   - conda-forge
   - defaults
+show_channel_urls: True
