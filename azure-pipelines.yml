@@ -3,7 +3,7 @@ resources:
     - repository: templates
       type: github
       name: beckermr/conda-package-tools
-      ref: $[ Build.SourceBranch ]
+      ref: enh-v2
       endpoint: azure-read-only
 
 variables:
