@@ -16,6 +16,8 @@ jobs:
       fi
     displayName:
       bootstrap
+    env:
+      BUILDTAG: ${{ parameters.buildtag }}
   - bash: ./conda-package-tools/install_miniconda.sh
     displayName: install miniconda
     env:
