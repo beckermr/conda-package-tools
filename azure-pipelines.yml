@@ -3,7 +3,7 @@
 jobs:
   - template: linux_python3.7_azure_template.yml
     parameters:
-      buildtag: v6  # $(Build.SourceBranchName)
+      buildtag: $(Build.SourceBranchName)
   - template: osx_python3.7_azure_template.yml
     parameters:
-      buildtag: v6  # $(Build.SourceBranchName)
+      buildtag: $(Build.SourceBranchName)
