@@ -3,11 +3,11 @@ resources:
     - repository: templates
       type: github
       name: beckermr/conda-package-tools
-      ref: refs/heads/master
+      ref: $(Build.SourceBranch)
       endpoint: azure-read-only
 
 variables:
-  buildtag: master
+  buildtag: $(Build.SourceBranchName)
 
 jobs:
 - job: linux_python37
