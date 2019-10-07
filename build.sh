@@ -16,7 +16,7 @@ export PATH="$HOME/miniconda/bin:$PATH"
 cat conda-package-tools/condarc > $HOME/.condarc
 
 conda build \
-    -m $HOM/miniconda/conda_build_config.yaml \
+    -m $HOME/miniconda/conda_build_config.yaml \
     -m conda-package-tools/${CONFIG}.yaml \
     recipe
 
