@@ -10,18 +10,6 @@ variables:
   buildtag: $(Build.SourceBranchName)
 
 jobs:
-- job: linux_python37
-  pool:
-    vmImage: 'Ubuntu-16.04'
-  timeoutInMinutes: 360
-  steps:
-  - checkout: self
-    clean: true
-  - bash: |
-      if [ "$BUILD_REPOSITORY_NAME" != "beckermr/conda-package-tools" ]; then
-          git clone -b ${BUILDTAG} https://github.com/beckermr/conda-package-tools.git
-      fi
-
   - template: linux_python3.7_azure_template.yml@templates
     parameters:
       buildtag: ${buildtag}
