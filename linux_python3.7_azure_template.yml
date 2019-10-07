@@ -1,0 +1,30 @@
+parameters:
+  buildtag: 'v999999999999999'  # does not exist so should error
+
+jobs:
+- job: linux_python37
+  pool:
+    vmImage: 'Ubuntu-16.04'
+  timeoutInMinutes: 360
+  steps:
+  - checkout: self
+    clean: true
+  - bash: |
+      echo "using branch/tag '${BUILDTAG}' of conda-package-tools"
+      if [ "$BUILD_REPOSITORY_NAME" != "beckermr/conda-package-tools" ]; then
+          git clone -b ${BUILDTAG} https://github.com/beckermr/conda-package-tools.git
+      fi
+    displayName:
+      bootstrap
+    env:
+      BUILDTAG: ${{ parameters.buildtag }}
+  - bash: ./conda-package-tools/install_miniconda.sh
+    displayName: install miniconda
+    env:
+      CONFIG: 'linux_python3.7'
+
+  - bash: ./conda-package-tools/build.sh
+    displayName: build and upload package
+    env:
+      CONFIG: 'linux_python3.7'
+      ANACONDA_TOKEN: $(anaconda.token)
