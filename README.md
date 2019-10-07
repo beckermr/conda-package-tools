@@ -21,7 +21,7 @@ Note that some of the CI configuration elements are lifted from conda-forge unde
           endpoint: azure-read-only
 
     variables:
-      buildtag: <XYZ>
+      buildtag: v<XYZ>
 
     jobs:
       - template: linux_python3.7_azure_template.yml@templates
@@ -29,7 +29,7 @@ Note that some of the CI configuration elements are lifted from conda-forge unde
           buildtag: ${buildtag}
       - template: osx_python3.7_azure_template.yml@templates
         parameters:
-          buildtag: ${buildtag}   
+          buildtag: ${buildtag}
    ```
 
    where `XYZ` is has been replaced with the version number (2 or greater).
