@@ -10,14 +10,9 @@ jobs:
   - checkout: self
     clean: true
   - bash: |
-      if [ "$BUILD_REPOSITORY_NAME" != "beckermr/conda-package-tools" ]
-      then
+      if [ "$BUILD_REPOSITORY_NAME" != "beckermr/conda-package-tools" ]; then
           git clone -b ${BUILDTAG} https://github.com/beckermr/conda-package-tools.git
-      else
-          ./bootstrap.sh
       fi
-    displayName:
-      bootstrap
   - bash: ./conda-package-tools/install_miniconda.sh
     displayName: install miniconda
     env:
