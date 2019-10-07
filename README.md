@@ -16,8 +16,9 @@ Note that some of the CI configuration elements are lifted from conda-forge unde
       repositories:
         - repository: templates
           type: github
-          name: conda-package-tools
+          name: beckermr/conda-package-tools
           ref: refs/tags/v<XYZ>
+          endpoint: azure-read-only
 
     variables:
       buildtag: <XYZ>
