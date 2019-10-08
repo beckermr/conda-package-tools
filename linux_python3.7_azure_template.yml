@@ -10,6 +10,11 @@ jobs:
   - checkout: self
     clean: true
   - bash: |
+        sudo apt-get remove -y --auto-remove gcc
+        sudo apt-get purge -y --auto-remove gcc
+    displayName:
+      removing system compilers
+  - bash: |
       echo "using branch/tag '${BUILDTAG}' of conda-package-tools"
       if [ "$BUILD_REPOSITORY_NAME" != "beckermr/conda-package-tools" ]; then
           git clone -b ${BUILDTAG} https://github.com/beckermr/conda-package-tools.git
@@ -22,7 +27,6 @@ jobs:
     displayName: install miniconda
     env:
       CONFIG: 'linux_python3.7'
-
   - bash: ./conda-package-tools/build.sh
     displayName: build and upload package
     env:
