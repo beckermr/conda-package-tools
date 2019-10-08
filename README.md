@@ -12,13 +12,13 @@ Note that some of the CI configuration elements are lifted from conda-forge unde
 3. For the YAML configuration, it should look like
 
    ```yaml
-    resources:
-      repositories:
-        - repository: templates
-          type: github
-          name: beckermr/conda-package-tools
-          ref: refs/tags/v<XYZ>
-          endpoint: azure-read-only
+   resources:
+     repositories:
+       - repository: templates
+         type: github
+         name: beckermr/conda-package-tools
+         ref: refs/tags/v<XYZ>
+         endpoint: azure-read-only
 
     variables:
       buildtag: v<XYZ>
