@@ -7,6 +7,31 @@ if [ "$CONFIG" == "linux_python3.7" ]; then
 elif [ "$CONFIG" == "osx_python3.7" ]; then
     pyver="37"
     os="osx"
+
+    # deal with OSX SDK
+    # follows the conda-forge one with less options
+    export MACOSX_DEPLOYMENT_TARGET=$(cat $HOME/miniconda/conda_build_config.yaml | shyaml get-value MACOSX_DEPLOYMENT_TARGET.0 10.9)
+    export MACOSX_DEPLOYMENT_TARGET=${MACOSX_DEPLOYMENT_TARGET:-10.9}
+    export CONDA_BUILD_SYSROOT="$(xcode-select -p)/Platforms/MacOSX.platform/Developer/SDKs/MacOSX${MACOSX_DEPLOYMENT_TARGET}.sdk"
+    echo "Downloading ${MACOSX_DEPLOYMENT_TARGET} sdk"
+    curl -L -O https://github.com/phracker/MacOSX-SDKs/releases/download/10.13/MacOSX${MACOSX_DEPLOYMENT_TARGET}.sdk.tar.xz
+    tar -xf MacOSX${MACOSX_DEPLOYMENT_TARGET}.sdk.tar.xz -C "$(dirname "$CONDA_BUILD_SYSROOT")"
+    # set minimum sdk version to our target
+    plutil -replace MinimumSDKVersion -string ${MACOSX_DEPLOYMENT_TARGET} $(xcode-select -p)/Platforms/MacOSX.platform/Info.plist
+    plutil -replace DTSDKName -string macosx${MACOSX_DEPLOYMENT_TARGET}internal $(xcode-select -p)/Platforms/MacOSX.platform/Info.plist
+
+    if [ -d "${CONDA_BUILD_SYSROOT}" ]
+    then
+        echo "Found CONDA_BUILD_SYSROOT: ${CONDA_BUILD_SYSROOT}"
+    else
+        echo "Missing CONDA_BUILD_SYSROOT: ${CONDA_BUILD_SYSROOT}"
+        exit 1
+    fi
+
+    echo "" >> ./conda-package-tools/${CONFIG}.yaml
+    echo "CONDA_BUILD_SYSROOT:" >> ./conda-package-tools/${CONFIG}.yaml
+    echo "- ${CONDA_BUILD_SYSROOT}" >> ./conda-package-tools/${CONFIG}.yaml
+    echo "" >> ./conda-package-tools/${CONFIG}.yaml
 fi
 
 export PATH="$HOME/miniconda/bin:$PATH"

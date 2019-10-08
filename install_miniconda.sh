@@ -17,4 +17,4 @@ export PATH="$HOME/miniconda/bin:$PATH"
 
 cat conda-package-tools/condarc > $HOME/.condarc
 
-conda install -yq python=${pyver} conda-build anaconda-client conda-verify conda-forge-pinning
+conda install -yq python=${pyver} conda-build anaconda-client conda-verify conda-forge-pinning shyaml
