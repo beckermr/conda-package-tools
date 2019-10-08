@@ -11,10 +11,10 @@ then
     os="MacOSX"
 fi
 
-wget --quiet https://repo.continuum.io/miniconda/Miniconda${pyver:0:1}-4.5.11-${os}-x86_64.sh
+curl -L -O https://repo.continuum.io/miniconda/Miniconda${pyver:0:1}-4.5.11-${os}-x86_64.sh
 bash Miniconda${pyver:0:1}-4.5.11-${os}-x86_64.sh -b -p $HOME/miniconda
 export PATH="$HOME/miniconda/bin:$PATH"
 
 cat conda-package-tools/condarc > $HOME/.condarc
 
-conda install -yq python=${pyver} conda-build anaconda-client conda-verify conda-forge-pinning
+conda install -yq python=${pyver} conda-build anaconda-client conda-verify conda-forge-pinning shyaml
