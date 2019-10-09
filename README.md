@@ -1,4 +1,5 @@
 # conda-package-tools
+[![Build Status](https://dev.azure.com/beckermr/beckermr%20conda%20channel/_apis/build/status/conda-package-tools?branchName=master)](https://dev.azure.com/beckermr/beckermr%20conda%20channel/_build/latest?definitionId=1&branchName=master)
 
 tools for building conda packages
 
