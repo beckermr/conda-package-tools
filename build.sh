@@ -43,10 +43,12 @@ conda build \
     -m conda-package-tools/${CONFIG}.yaml \
     recipe
 
-echo " "
-echo "package sizes:"
-du -h ${HOME}/miniconda/conda-bld/*/*.tar.bz2
-echo " "
+if [[ `compgen -G ${HOME}/miniconda/conda-bld/*/*.tar.bz2` ]]; then
+    echo " "
+    echo "package sizes:"
+    du -h ${HOME}/miniconda/conda-bld/*/*.tar.bz2
+    echo " "
+fi
 
 if [[ ${ANACONDA_TOKEN} ]]; then
     # https://stackoverflow.com/questions/24318927/bash-regex-to-match-semantic-version-number
