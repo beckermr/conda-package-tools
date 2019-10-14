@@ -66,7 +66,7 @@ if [[ `compgen -G ${HOME}/miniconda/conda-bld/*/*.tar.bz2` ]]; then
         else
             if [[ "$BUILD_SOURCEBRANCHNAME" == "master" ]] || [[ ${BUILD_SOURCEBRANCHNAME#v} =~ $SEMVER_REGEX ]]; then
                 echo "Uploading the package..."
-                anaconda --skip-existing -t ${ANACONDA_TOKEN} upload $HOME/miniconda/conda-bld/*/*.tar.bz2
+                anaconda --token ${ANACONDA_TOKEN} upload --skip-existing $HOME/miniconda/conda-bld/*/*.tar.bz2
                 exit 0
             fi
         fi
