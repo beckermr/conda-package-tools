@@ -11,7 +11,7 @@ jobs:
     clean: true
   - bash: |
       sudo chown -R $USER $CONDA  # not actually needed but here for later
-      sudo chown -R $USER $USER/.conda
+      sudo chown -R $USER $HOME/.conda
     displayName:
       Fix conda directory permissions.
   - bash: |
