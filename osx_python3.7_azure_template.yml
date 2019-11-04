@@ -10,6 +10,11 @@ jobs:
   - checkout: self
     clean: true
   - bash: |
+      sudo chown -R $USER $CONDA  # not actually needed but here for later
+      sudo chown -R $USER $HOME/.conda
+    displayName:
+      Fix conda directory permissions.
+  - bash: |
       curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/uninstall > ~/uninstall_homebrew
       chmod +x ~/uninstall_homebrew
       ~/uninstall_homebrew -fq
