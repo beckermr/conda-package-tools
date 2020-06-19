@@ -13,7 +13,7 @@ fi
 
 curl -L https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-${os}-x86_64.sh > miniforge3.sh
 chmod u+x miniforge3.sh
-bash miniforge.sh -b -p ${HOME}/miniforge3
+bash miniforge3.sh -b -p ${HOME}/miniforge3
 source $HOME/miniforge3/etc/profile.d/conda.sh 
 conda activate base
 
