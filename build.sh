@@ -10,7 +10,7 @@ elif [ "$CONFIG" == "osx_python3.7" ]; then
 
     # deal with OSX SDK
     # follows the conda-forge one with less options
-    export MACOSX_DEPLOYMENT_TARGET=$(cat $HOME/miniconda/conda_build_config.yaml | shyaml get-value MACOSX_DEPLOYMENT_TARGET.0 10.9)
+    export MACOSX_DEPLOYMENT_TARGET=$(cat $HOME/miniforge3/conda_build_config.yaml | shyaml get-value MACOSX_DEPLOYMENT_TARGET.0 10.9)
     export MACOSX_DEPLOYMENT_TARGET=${MACOSX_DEPLOYMENT_TARGET:-10.9}
     export CONDA_BUILD_SYSROOT="$(xcode-select -p)/Platforms/MacOSX.platform/Developer/SDKs/MacOSX${MACOSX_DEPLOYMENT_TARGET}.sdk"
     echo "Downloading ${MACOSX_DEPLOYMENT_TARGET} sdk"
@@ -34,7 +34,8 @@ elif [ "$CONFIG" == "osx_python3.7" ]; then
     echo "" >> ./conda-package-tools/${CONFIG}.yaml
 fi
 
-export PATH="$HOME/miniconda/bin:$PATH"
+source $HOME/miniforge3/etc/profile.d/conda.sh 
+conda activate base
 
 cat conda-package-tools/condarc > $HOME/.condarc
 
@@ -42,10 +43,10 @@ conda build \
     -m conda-package-tools/${CONFIG}.yaml \
     recipe
 
-if [[ `compgen -G ${HOME}/miniconda/conda-bld/*/*.tar.bz2` ]]; then
+if [[ `compgen -G ${HOME}/miniforge3/conda-bld/*/*.tar.bz2` ]]; then
     echo " "
     echo "package sizes:"
-    du -h ${HOME}/miniconda/conda-bld/*/*.tar.bz2
+    du -h ${HOME}/miniforge3/conda-bld/*/*.tar.bz2
     echo " "
 
     if [[ ${ANACONDA_TOKEN} ]]; then
@@ -55,17 +56,17 @@ if [[ `compgen -G ${HOME}/miniconda/conda-bld/*/*.tar.bz2` ]]; then
         if [ "$BUILD_REPOSITORY_NAME" == "beckermr/conda-package-tools" ]; then
             {
                 # remove the old package
-                anaconda -t ${ANACONDA_TOKEN} remove -f beckermr/test_package/0.1.0/${os}-64/test_package-0.1.0-py${pyver}_0.tar.bz2
+                anaconda --token ${ANACONDA_TOKEN} remove -f beckermr/test_package/0.1.0/${os}-64/test_package-0.1.0-py${pyver}_0.tar.bz2
             } || {
                 echo "WARNING: could not remove old build for testing!"
             }
             echo "Uploading the package..."
-            anaconda -t ${ANACONDA_TOKEN} upload $HOME/miniconda/conda-bld/*/*.tar.bz2
+            anaconda --token ${ANACONDA_TOKEN} upload $HOME/miniforge3/conda-bld/*/*.tar.bz2
             exit 0
         else
             if [[ "$BUILD_SOURCEBRANCHNAME" == "master" ]] || [[ ${BUILD_SOURCEBRANCHNAME#v} =~ $SEMVER_REGEX ]]; then
                 echo "Uploading the package..."
-                anaconda --token ${ANACONDA_TOKEN} upload --skip-existing $HOME/miniconda/conda-bld/*/*.tar.bz2
+                anaconda --token ${ANACONDA_TOKEN} upload --skip-existing $HOME/miniforge3/conda-bld/*/*.tar.bz2
                 exit 0
             fi
         fi

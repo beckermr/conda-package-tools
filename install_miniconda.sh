@@ -11,13 +11,15 @@ then
     os="MacOSX"
 fi
 
-curl -L -O https://repo.continuum.io/miniconda/Miniconda${pyver:0:1}-4.5.11-${os}-x86_64.sh
-bash Miniconda${pyver:0:1}-4.5.11-${os}-x86_64.sh -b -p $HOME/miniconda
-export PATH="$HOME/miniconda/bin:$PATH"
+curl -L https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-${os}-x86_64.sh > miniforge3.sh
+chmod u+x miniforge3.sh
+bash miniforge3.sh -b -p ${HOME}/miniforge3
+source $HOME/miniforge3/etc/profile.d/conda.sh 
+conda activate base
 
 cat conda-package-tools/condarc > $HOME/.condarc
 
-conda install -yq python=${pyver} "conda-build<3.18.10" anaconda-client conda-verify conda-forge-pinning shyaml
+conda install -yq python=${pyver} conda-build anaconda-client conda-verify conda-forge-pinning shyaml
 
 conda list
 
