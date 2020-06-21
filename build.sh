@@ -40,6 +40,7 @@ conda activate base
 cat conda-package-tools/condarc > $HOME/.condarc
 
 conda build \
+    -m $HOME/miniforge3/conda_build_config.yaml \
     -m conda-package-tools/${CONFIG}.yaml \
     recipe
 
