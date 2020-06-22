@@ -24,3 +24,6 @@ conda install -yq python=${pyver} conda-build anaconda-client conda-verify conda
 conda list
 
 conda info
+
+echo "condarc:"
+cat $HOME/.condarc
