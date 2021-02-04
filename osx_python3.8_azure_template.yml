@@ -2,7 +2,7 @@ parameters:
   buildtag: 'v999999999999999'  # does not exist so should error
 
 jobs:
-- job: osx_python37
+- job: osx_python38
   pool:
     vmImage: 'macOS-10.14'
   timeoutInMinutes: 360
@@ -33,9 +33,9 @@ jobs:
   - bash: ./conda-package-tools/install_miniconda.sh
     displayName: install miniconda
     env:
-      CONFIG: 'osx_python3.7'
+      CONFIG: 'osx_python3.8'
   - bash: ./conda-package-tools/build.sh
     displayName: build and upload package
     env:
-      CONFIG: 'osx_python3.7'
+      CONFIG: 'osx_python3.8'
       ANACONDA_TOKEN: $(anaconda.token)

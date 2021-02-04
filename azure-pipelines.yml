@@ -1,9 +1,9 @@
 # this azure config is only for testing in the conda-package-tools repo
 # see the readme for how to configure another repo
 jobs:
-  - template: linux_python3.7_azure_template.yml
+  - template: linux_python3.8_azure_template.yml
     parameters:
       buildtag: $(Build.SourceBranchName)
-  - template: osx_python3.7_azure_template.yml
+  - template: osx_python3.8_azure_template.yml
     parameters:
       buildtag: $(Build.SourceBranchName)

@@ -2,7 +2,7 @@ parameters:
   buildtag: 'v999999999999999'  # does not exist so should error
 
 jobs:
-- job: linux_python37
+- job: linux_python38
   pool:
     vmImage: 'Ubuntu-16.04'
   timeoutInMinutes: 360
@@ -28,9 +28,9 @@ jobs:
   - bash: ./conda-package-tools/install_miniconda.sh
     displayName: install miniconda
     env:
-      CONFIG: 'linux_python3.7'
+      CONFIG: 'linux_python3.8'
   - bash: ./conda-package-tools/build.sh
     displayName: build and upload package
     env:
-      CONFIG: 'linux_python3.7'
+      CONFIG: 'linux_python3.8'
       ANACONDA_TOKEN: $(anaconda.token)

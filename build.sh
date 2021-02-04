@@ -1,11 +1,11 @@
 #!/bin/bash
 set -e
 
-if [ "$CONFIG" == "linux_python3.7" ]; then
-    pyver="37"
+if [ "$CONFIG" == "linux_python3.8" ]; then
+    pyver="38"
     os="linux"
-elif [ "$CONFIG" == "osx_python3.7" ]; then
-    pyver="37"
+elif [ "$CONFIG" == "osx_python3.8" ]; then
+    pyver="38"
     os="osx"
 
     # deal with OSX SDK
