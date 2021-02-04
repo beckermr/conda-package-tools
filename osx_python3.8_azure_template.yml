@@ -33,9 +33,9 @@ jobs:
   - bash: ./conda-package-tools/install_miniconda.sh
     displayName: install miniconda
     env:
-      CONFIG: 'osx_python3.7'
+      CONFIG: 'osx_python3.8'
   - bash: ./conda-package-tools/build.sh
     displayName: build and upload package
     env:
-      CONFIG: 'osx_python3.7'
+      CONFIG: 'osx_python3.8'
       ANACONDA_TOKEN: $(anaconda.token)

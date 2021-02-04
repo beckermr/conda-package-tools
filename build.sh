@@ -1,10 +1,10 @@
 #!/bin/bash
 set -e
 
-if [ "$CONFIG" == "linux_python3.7" ]; then
+if [ "$CONFIG" == "linux_python3.8" ]; then
     pyver="37"
     os="linux"
-elif [ "$CONFIG" == "osx_python3.7" ]; then
+elif [ "$CONFIG" == "osx_python3.8" ]; then
     pyver="37"
     os="osx"
 

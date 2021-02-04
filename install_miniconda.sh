@@ -1,13 +1,13 @@
 #!/bin/bash
 set -e
 
-if [ "$CONFIG" == "linux_python3.7" ]
+if [ "$CONFIG" == "linux_python3.8" ]
 then
-    pyver="3.7"
+    pyver="3.8"
     os="Linux"
-elif [ "$CONFIG" == "osx_python3.7" ]
+elif [ "$CONFIG" == "osx_python3.8" ]
 then
-    pyver="3.7"
+    pyver="3.8"
     os="MacOSX"
 fi
 
