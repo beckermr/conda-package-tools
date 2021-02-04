@@ -39,7 +39,7 @@ conda activate base
 
 cat conda-package-tools/condarc > $HOME/.condarc
 
-conda build \
+conda mambabuild \
     -m $HOME/miniforge3/conda_build_config.yaml \
     -m conda-package-tools/${CONFIG}.yaml \
     recipe
