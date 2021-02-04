@@ -19,7 +19,7 @@ conda activate base
 
 cat conda-package-tools/condarc > $HOME/.condarc
 
-conda install -yq python=${pyver} conda-build anaconda-client conda-verify conda-forge-pinning shyaml
+conda install -yq python=${pyver} conda-build anaconda-client conda-verify conda-forge-pinning shyaml mamba boa
 
 conda list
 
