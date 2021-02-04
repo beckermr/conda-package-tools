@@ -2,10 +2,10 @@
 set -e
 
 if [ "$CONFIG" == "linux_python3.8" ]; then
-    pyver="37"
+    pyver="38"
     os="linux"
 elif [ "$CONFIG" == "osx_python3.8" ]; then
-    pyver="37"
+    pyver="38"
     os="osx"
 
     # deal with OSX SDK

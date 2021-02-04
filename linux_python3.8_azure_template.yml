@@ -2,7 +2,7 @@ parameters:
   buildtag: 'v999999999999999'  # does not exist so should error
 
 jobs:
-- job: linux_python37
+- job: linux_python38
   pool:
     vmImage: 'Ubuntu-16.04'
   timeoutInMinutes: 360

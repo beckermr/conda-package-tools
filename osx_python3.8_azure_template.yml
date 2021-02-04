@@ -2,7 +2,7 @@ parameters:
   buildtag: 'v999999999999999'  # does not exist so should error
 
 jobs:
-- job: osx_python37
+- job: osx_python38
   pool:
     vmImage: 'macOS-10.14'
   timeoutInMinutes: 360
